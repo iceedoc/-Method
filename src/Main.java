@@ -7,11 +7,10 @@ public class Main {
         checkLeapYear(year);
         checkLeapYear(2012);
 
-        printTask(2);
-        suggestAppVersion(1, 2000);
         suggestAppVersion(0, 2010);
-        suggestAppVersion(-1, 2025);
-        suggestAppVersion(0, 2030);
+        suggestAppVersion(1, 2015);
+        suggestAppVersion(0, 2028);
+
 
         printTask(3);
         int calculateDeliveryDays = calculateDeliveryDays(40);
@@ -29,16 +28,23 @@ public class Main {
 
     public static void suggestAppVersion(int osType, int deviceYear) {
         int currentYear = LocalDate.now().getYear();
-        if (osType == 0 && deviceYear < currentYear) {
-            System.out.println("Установить облегченную версию приложения для IOS по ссылке");
-        } else if (osType == 0 && deviceYear == currentYear) {
-            System.out.println("Установите версию приложения для IOS по ссылке");
-        } else if (osType == 1 && deviceYear < currentYear) {
-            System.out.println("Установите облегченную версию приложения для Android по ссылке");
+        String osName;
+        if (osType == 0) {
+            osName = "iOS";
         } else if (osType == 1) {
-            System.out.println("Установите версию приложения для Android по ссылке");
+            osName = "Android";
         } else {
-            System.out.println("Нет таких данных");
+            System.out.println("Нет данных.");
+            return;
+        }
+        if (deviceYear < currentYear) {
+            if (deviceYear < 2015) {
+                System.out.println("Установите облегченную версию приложения для " + osName + " по ссылке.");
+            } else {
+                System.out.println("Установите обычную версию приложения для " + osName + " по ссылке.");
+            }
+        } else {
+            System.out.println("Нет данных.");
         }
     }
 
